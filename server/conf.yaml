@@ -1,0 +1,26 @@
+# 日志记录文件路径配置
+log_file : golazy.log
+#日志记录级别：debug|info|warn|error|fatal|panic
+log_level : debug
+#是否同步打印日志到终端显示
+log_to_console : true
+#服务器GRPC监听地址，如：localhost:5050
+grpc_listen : :19899
+#服务器端允许收发数据最大大小，单位bytes,默认20MB=20*1024*1024
+max_message_size : 20971520
+#消息存储配置
+store :
+  #数据库适配器配置
+  adapters :
+    #数据库适配器类型，当前支持 mysql，sqlite
+    adapter_type : mysql
+    #mysql适配器配置
+    mysql:
+      #数据源连接信息
+      dsn: golazy:golazy@tcp(localhost)/golazy?parseTime=true&collation=utf8mb4_unicode_ci
+      #数据库名称
+      database : "golazy"
+    #sqlite适配器配置
+    sqlite :
+      #数据库文件名称
+      database : golazy.db

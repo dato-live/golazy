@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package golazy;
+
+
+service Node {
+    rpc MessageLoop (stream ClientMsg) returns (stream ClientMsg){}
+}
+
+message ClientHi{
+    string ClientID = 1;
+    string ClientName = 2;
+    string ClientVersion=3;
+    string ClientDescription=4;
+    map<int64,string> AllowedCommandIDs=5;
+    int64 Timestamp=6;
+}
+
+message ClientLeave{
+    string ClientID = 1;
+    int64 Timestamp=2;
+}
+
+message ClientReq{
+    string ReqID=1;
+    string From=2;
+    string To=3;
+    int64 CommandID=4;
+    string Content=5;
+    int64 Timestamp=6;
+}
+
+message ClientResp{
+    string RespID=1;
+    string From=2;
+    string To=3;
+    string Content=4;
+    int32 ErrCode=5;
+    string ErrMsg=6;
+    int64 Timestamp=7;
+}
+
+message AckMsg{
+    string MsgID=1;
+    bool IsOk=2;
+    string Msg=3;
+    int64 Timestamp=4;
+}
+
+message ClientMsg{
+    oneof Message{
+        ClientHi Hi=1;
+        ClientLeave Leave=2;
+        ClientReq Req=3;
+        ClientResp Resp=4;
+        AckMsg Ack=5;
+    }
+    string MsgID=6;
+}
+

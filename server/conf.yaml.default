@@ -1,0 +1,38 @@
+# 日志记录文件路径配置
+log_file : golazy.log
+#日志记录级别：debug|info|warn|error|fatal|panic
+log_level : debug
+#是否同步打印日志到终端显示
+log_to_console : true
+#是否在控制台打印数据库操作SQL语句
+show_sql_to_console : true
+#服务器GRPC监听地址，如：localhost:5050
+grpc_listen : :5050
+#服务器端允许收发数据最大大小，单位bytes,默认20MB=20*1024*1024
+max_message_size : 20971520
+#会话Session空闲超时时间，单位秒，默认55秒
+idle_session_timeout_second : 55
+#消息失败重传最大重试次数，默认100次
+max_retry_count : 100
+#消息失败重传重试时间间隔，单位秒，默认30秒
+retry_second_interval : 30
+#清除数据库消息传输成功消息时间间隔，单位分钟，默认15分钟
+clean_db_minute_interval : 15
+#消息有效时间间隔（消息过期后将被删除），单位分钟，默认10小时=600分钟
+message_expire_minute_interval : 600
+#消息存储配置
+store :
+  #数据库适配器配置
+  adapters :
+    #数据库适配器类型，当前支持 mysql，sqlite
+    adapter_type : mysql
+    #mysql适配器配置
+    mysql:
+      #数据源连接信息
+      dsn: root@tcp(localhost)/golazy?parseTime=true&collation=utf8mb4_unicode_ci
+      #数据库名称
+      database : "golazy"
+    #sqlite适配器配置
+    sqlite :
+      #数据库文件名称
+      database : golazy.db
