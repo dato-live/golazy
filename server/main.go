@@ -28,7 +28,7 @@ var logger *zap.Logger
 
 func main() {
 
-	runType := flag.String("type", "server", "TRC server run type, one for server [server], one for init db [initdb].")
+	runType := flag.String("type", "server", "RPC server run type, one for server [server], one for init db [initdb].")
 	reset := flag.Bool("reset", false, "reset the database")
 	flag.Parse()
 
@@ -49,7 +49,7 @@ func main() {
 		}()
 	} else {
 		//
-		logger.Info("Run as TRC server model", zap.String("run_type", *runType), zap.Bool("reset", *reset))
+		logger.Info("Run as RPC server model", zap.String("run_type", *runType), zap.Bool("reset", *reset))
 		var err error
 
 		err = store.Open(configs)

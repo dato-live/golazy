@@ -1,4 +1,4 @@
-module golazy
+module github.com/dato-live/golazy
 
 go 1.12
 
