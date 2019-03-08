@@ -4,10 +4,26 @@ log_file : golazy.log
 log_level : debug
 #是否同步打印日志到终端显示
 log_to_console : true
+#是否在控制台打印数据库操作SQL语句
+show_sql_to_console : true
 #服务器GRPC监听地址，如：localhost:5050
-grpc_listen : :19899
+grpc_listen : :5050
 #服务器端允许收发数据最大大小，单位bytes,默认20MB=20*1024*1024
 max_message_size : 20971520
+#会话Session空闲超时时间，单位秒，默认55秒
+idle_session_timeout_second : 55
+#消息失败重传最大重试次数，默认100次
+max_retry_count : 100
+#消息失败重传重试时间间隔，单位秒，默认30秒
+retry_second_interval : 30
+#清除数据库消息传输成功消息时间间隔，单位分钟，默认15分钟
+clean_db_minute_interval : 15
+#消息有效时间间隔（消息过期后将被删除），单位分钟，默认10小时=600分钟
+message_expire_minute_interval : 600
+#API Key Salt
+api_key_salt : fdsfdsf
+TlsStrictMaxAge : ""
+TlsRedirectHTTP : ""
 #消息存储配置
 store :
   #数据库适配器配置

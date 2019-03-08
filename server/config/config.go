@@ -37,11 +37,14 @@ type Config struct {
 
 	Store StoreConfig `yaml:"store"`
 
-	IdleSessionTimeoutSecond    int `yaml:"idle_session_timeout_second"`
-	MaxRetryCount               int `yaml:"max_retry_count"`
-	RetrySecondInterval         int `yaml:"retry_second_interval"`
-	CleanDbMinuteInterval       int `yaml:"clean_db_minute_interval"`
-	MessageExpireMinuteInterval int `yaml:"message_expire_minute_interval"`
+	IdleSessionTimeoutSecond    int    `yaml:"idle_session_timeout_second"`
+	MaxRetryCount               int    `yaml:"max_retry_count"`
+	RetrySecondInterval         int    `yaml:"retry_second_interval"`
+	CleanDbMinuteInterval       int    `yaml:"clean_db_minute_interval"`
+	MessageExpireMinuteInterval int    `yaml:"message_expire_minute_interval"`
+	ApiKeySalt                  []byte `yaml:"api_key_salt"`
+	TlsStrictMaxAge             string `yaml:"tls_strict_max_age"`
+	TlsRedirectHTTP             string `yaml:"tls_redirect_http"`
 }
 
 func LoadConfig(configPath string) Config {

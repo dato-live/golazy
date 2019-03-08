@@ -20,6 +20,10 @@ retry_second_interval : 30
 clean_db_minute_interval : 15
 #消息有效时间间隔（消息过期后将被删除），单位分钟，默认10小时=600分钟
 message_expire_minute_interval : 600
+#API Key Salt
+api_key_salt : fdsfdsf
+TlsStrictMaxAge : ""
+TlsRedirectHTTP : ""
 #消息存储配置
 store :
   #数据库适配器配置
