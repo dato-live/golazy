@@ -92,16 +92,20 @@ func (s *Session) dispatchRaw(raw []byte) {
 		toLog = raw[:512]
 		truncated = "<...>"
 	}
-	log.Printf("in: '%s%s' ip='%s' sid='%s' uid='%s'", toLog, truncated, s.remoteAddr, s.sid, s.uid)
+	log.Printf("in: '%s%s' ip='%s' sid='%s' uid='%s'", toLog, truncated, s.remoteAddr, s.sid, s.clientInfo.ClientID)
 
 	if err := json.Unmarshal(raw, &msg); err != nil {
 		// Malformed message
 		log.Println("s.dispatch", err, s.sid)
-		s.queueOut(ErrMalformed("", "", time.Now().UTC().Round(time.Millisecond)))
+		//s.queueOut(&DMClientMsg{
+		//	Ack:&DMAckMsg{
+		//		MsgID:
+		//	}
+		//})
 		return
 	}
 
-	s.dispatch(&msg)
+	s.dispatchMsg(&msg)
 }
 
 func (s *Session) Serialize(msg *DMClientMsg) interface{} {
