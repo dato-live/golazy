@@ -4,6 +4,7 @@ import (
 	"flag"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"net/http"
 	"os"
 
 	"os/signal"
@@ -70,6 +71,10 @@ func main() {
 		}
 
 		go RetrySendMsgLoop()
+
+		//http service
+		mu := http.NewServeMux()
+		mu.HandleFunc("/v0/channels", serveWebSocket)
 
 		c := make(chan os.Signal, 1)
 		signal.Notify(c, os.Interrupt, os.Kill)
